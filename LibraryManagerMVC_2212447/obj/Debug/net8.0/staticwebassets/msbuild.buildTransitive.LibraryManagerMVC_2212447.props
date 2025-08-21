@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/LibraryManagerMVC_2212447.props" />
+</Project>

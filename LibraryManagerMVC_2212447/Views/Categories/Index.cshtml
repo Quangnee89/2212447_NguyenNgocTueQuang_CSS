@@ -1,0 +1,45 @@
+@model IEnumerable<LibraryManagerMVC_2212447.Models.Category>
+
+@{
+    ViewData["Title"] = "Danh mục sách";
+}
+
+<h2>Danh mục sách</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Thêm danh mục mới</a>
+    <a asp-controller="Books" asp-action="Index" class="btn btn-secondary">Quản lý sách</a>
+</p>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.CategoryName)</th>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+            <th>Số lượng sách</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.CategoryName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>@item.Books.Count sách</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CategoryId" class="btn btn-warning btn-sm">Sửa</a>
+                    <a asp-action="Details" asp-route-id="@item.CategoryId" class="btn btn-info btn-sm">Chi tiết</a>
+                    <a asp-action="Delete" asp-route-id="@item.CategoryId" class="btn btn-danger btn-sm">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
